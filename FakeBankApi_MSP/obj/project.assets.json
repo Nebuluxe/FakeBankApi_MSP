@@ -229,11 +229,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\ASUS TUF F15\\Desktop\\Api Musi Pro( Integracion de plataformas)\\FakeBankApi_MSP\\FakeBankApi_MSP\\FakeBankApi_MSP\\FakeBankApi_MSP.csproj",
+      "projectUniqueName": "C:\\Users\\ASUS TUF F15\\Desktop\\Api Musi Pro( Integracion de plataformas)\\FakeBankApi_MSP\\FakeBankApi_MSP\\FakeBankApi_MSP.csproj",
       "projectName": "FakeBankApi_MSP",
-      "projectPath": "C:\\Users\\ASUS TUF F15\\Desktop\\Api Musi Pro( Integracion de plataformas)\\FakeBankApi_MSP\\FakeBankApi_MSP\\FakeBankApi_MSP\\FakeBankApi_MSP.csproj",
+      "projectPath": "C:\\Users\\ASUS TUF F15\\Desktop\\Api Musi Pro( Integracion de plataformas)\\FakeBankApi_MSP\\FakeBankApi_MSP\\FakeBankApi_MSP.csproj",
       "packagesPath": "C:\\Users\\ASUS TUF F15\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\ASUS TUF F15\\Desktop\\Api Musi Pro( Integracion de plataformas)\\FakeBankApi_MSP\\FakeBankApi_MSP\\FakeBankApi_MSP\\obj\\",
+      "outputPath": "C:\\Users\\ASUS TUF F15\\Desktop\\Api Musi Pro( Integracion de plataformas)\\FakeBankApi_MSP\\FakeBankApi_MSP\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\ASUS TUF F15\\AppData\\Roaming\\NuGet\\NuGet.Config",
