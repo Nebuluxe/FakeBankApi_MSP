@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "FdlqjXJmBOvmBTuBKEpkpsDhq1yoJvYmbeXFsdKdalU=",
+  "Source": "FakeBankApi_MSP",
+  "BasePath": "_content/FakeBankApi_MSP",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

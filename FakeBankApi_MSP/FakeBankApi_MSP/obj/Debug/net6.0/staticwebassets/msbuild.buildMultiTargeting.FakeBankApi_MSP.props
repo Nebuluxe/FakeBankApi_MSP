@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\FakeBankApi_MSP.props" />
+</Project>
