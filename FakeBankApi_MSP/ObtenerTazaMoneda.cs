@@ -19,44 +19,43 @@ namespace FakeBankApi_MSP
 	{
 		public string ApiKey = "f4b20e88262ba1da76d52a0c05475e26276151a5";
 
-		public async Task<IActionResult> GetTasaEuro()
+		public async Task<string> GetTasaEuro()
 		{
-			var httpClient = new HttpClient();
+            var httpClient = new HttpClient();
 
             string url = "https://api.cmfchile.cl/api-sbifv3/recursos_api/euro?apikey=" + ApiKey + "&formato=json";
 
-			HttpResponseMessage response = await httpClient.GetAsync(url);
+            HttpResponseMessage response = await httpClient.GetAsync(url);
 
-			if (response.IsSuccessStatusCode)
-			{
-				string responseData = await response.Content.ReadAsStringAsync();
-				return Content(responseData);
-			}
-			else
-			{
-				return View("Error");
-			}
-		}
+            string responseData = "";
 
-		public async Task<IActionResult> GetTasaDolar()
+            if (response.IsSuccessStatusCode)
+            {
+                responseData = await response.Content.ReadAsStringAsync();
+            }
+
+            return responseData;
+        }
+
+		public async Task<string> GetTasaDolar()
 		{
-			string url = "https://api.cmfchile.cl/api-sbifv3/recursos_api/euro?apikey=" + ApiKey + "&formato=json";
-
             var httpClient = new HttpClient();
 
-            var response = await httpClient.GetAsync(url);
+            string url = "https://api.cmfchile.cl/api-sbifv3/recursos_api/dolar?apikey=" + ApiKey + "&formato=json";
 
-			string content = "";
+            HttpResponseMessage response = await httpClient.GetAsync(url);
 
-			if (response.IsSuccessStatusCode)
-			{
-				content = await response.Content.ReadAsStringAsync();
-			}
+            string responseData = "";
 
-			return Content(content);
-		}
+            if (response.IsSuccessStatusCode)
+            {
+                responseData = await response.Content.ReadAsStringAsync();
+            }
 
-		public async Task<IActionResult> GetTasaUF()
+            return responseData;
+        }
+
+		public async Task<string> GetTasaUF()
 		{
             var httpClient = new HttpClient();
 
@@ -64,15 +63,14 @@ namespace FakeBankApi_MSP
 
 			HttpResponseMessage response = await httpClient.GetAsync(url);
 
-			if (response.IsSuccessStatusCode)
+			string responseData = "";
+
+            if (response.IsSuccessStatusCode)
 			{
-				string responseData = await response.Content.ReadAsStringAsync();
-				return Content(responseData);
+				responseData = await response.Content.ReadAsStringAsync();
 			}
-			else
-			{
-				return View("Error");
-			}
+
+            return responseData;
 		}
 	}
 
