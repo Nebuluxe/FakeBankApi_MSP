@@ -62,3 +62,8 @@ C:\Users\ASUS TUF F15\Desktop\Api Musi Pro( Integracion de plataformas)\FakeBank
 C:\Users\ASUS TUF F15\Desktop\Api Musi Pro( Integracion de plataformas)\FakeBankApi_MSP\FakeBankApi_MSP\obj\Debug\net6.0\FakeBankApi_MSP.pdb
 C:\Users\ASUS TUF F15\Desktop\Api Musi Pro( Integracion de plataformas)\FakeBankApi_MSP\FakeBankApi_MSP\obj\Debug\net6.0\FakeBankApi_MSP.genruntimeconfig.cache
 C:\Users\ASUS TUF F15\Desktop\Api Musi Pro( Integracion de plataformas)\FakeBankApi_MSP\FakeBankApi_MSP\obj\Debug\net6.0\ref\FakeBankApi_MSP.dll
+C:\Users\ASUS TUF F15\Desktop\Api Musi Pro( Integracion de plataformas)\FakeBankApi_MSP\FakeBankApi_MSP\bin\Debug\net6.0\Newtonsoft.Json.dll
+C:\Users\ASUS TUF F15\Desktop\Api Musi Pro( Integracion de plataformas)\FakeBankApi_MSP\FakeBankApi_MSP\bin\Debug\net6.0\RestSharp.dll
+C:\Users\ASUS TUF F15\Desktop\Api Musi Pro( Integracion de plataformas)\FakeBankApi_MSP\FakeBankApi_MSP\bin\Debug\net6.0\System.Text.Encodings.Web.dll
+C:\Users\ASUS TUF F15\Desktop\Api Musi Pro( Integracion de plataformas)\FakeBankApi_MSP\FakeBankApi_MSP\bin\Debug\net6.0\System.Text.Json.dll
+C:\Users\ASUS TUF F15\Desktop\Api Musi Pro( Integracion de plataformas)\FakeBankApi_MSP\FakeBankApi_MSP\bin\Debug\net6.0\runtimes\browser\lib\net6.0\System.Text.Encodings.Web.dll

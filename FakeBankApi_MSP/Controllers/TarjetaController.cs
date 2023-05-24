@@ -5,7 +5,7 @@ namespace MusicProAPI.Controllers
 {
 	[ApiController]
 	[Route("Tarjeta")]
-	public class TarjetaController
+	public class TarjetaController : Controller
 	{
 		GlobalMetods metods = new GlobalMetods();
 

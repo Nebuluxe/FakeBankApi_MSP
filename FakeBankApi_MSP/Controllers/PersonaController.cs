@@ -7,7 +7,7 @@ namespace FakeBankApi_MSP.Controllers
 {
 	[ApiController]
 	[Route("Persona")]
-	public class PersonaController
+	public class PersonaController : Controller
 	{
 		GlobalMetods metods = new GlobalMetods();
 
