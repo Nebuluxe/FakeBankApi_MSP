@@ -19,25 +19,18 @@ namespace FakeBankApi_MSP
 	{
 		public string ApiKey = "f4b20e88262ba1da76d52a0c05475e26276151a5";
 
-		private readonly IHttpClientFactory httpClientFactory;
-
-		public ObtenerTazaMoneda(IHttpClientFactory httpClientFactory)
-		{
-			this.httpClientFactory = httpClientFactory;
-		}
-
 		public async Task<IActionResult> GetTasaEuro()
 		{
-			var httpClient = httpClientFactory.CreateClient();
+			var httpClient = new HttpClient();
 
-			string url = "https://api.cmfchile.cl/api-sbifv3/recursos_api/euro?apikey=" + ApiKey + "&formato=json";
+            string url = "https://api.cmfchile.cl/api-sbifv3/recursos_api/euro?apikey=" + ApiKey + "&formato=json";
 
 			HttpResponseMessage response = await httpClient.GetAsync(url);
 
 			if (response.IsSuccessStatusCode)
 			{
 				string responseData = await response.Content.ReadAsStringAsync();
-				return Content(responseData, "application/json");
+				return Content(responseData);
 			}
 			else
 			{
@@ -49,9 +42,9 @@ namespace FakeBankApi_MSP
 		{
 			string url = "https://api.cmfchile.cl/api-sbifv3/recursos_api/euro?apikey=" + ApiKey + "&formato=json";
 
-			var conection = new HttpClient();
+            var httpClient = new HttpClient();
 
-			var response = await conection.GetAsync(url);
+            var response = await httpClient.GetAsync(url);
 
 			string content = "";
 
@@ -65,16 +58,16 @@ namespace FakeBankApi_MSP
 
 		public async Task<IActionResult> GetTasaUF()
 		{
-			var httpClient = httpClientFactory.CreateClient();
+            var httpClient = new HttpClient();
 
-			string url = "https://api.cmfchile.cl/api-sbifv3/recursos_api/uf?apikey=" + ApiKey + "&formato=json";
+            string url = "https://api.cmfchile.cl/api-sbifv3/recursos_api/uf?apikey=" + ApiKey + "&formato=json";
 
 			HttpResponseMessage response = await httpClient.GetAsync(url);
 
 			if (response.IsSuccessStatusCode)
 			{
 				string responseData = await response.Content.ReadAsStringAsync();
-				return Content(responseData, "application/json");
+				return Content(responseData);
 			}
 			else
 			{

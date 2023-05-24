@@ -1,4 +1,4 @@
-﻿namespace MusicProAPI.Modelos
+﻿namespace FakeBankApi_MSP.Modelos
 {
 	public class Tarjeta
 	{

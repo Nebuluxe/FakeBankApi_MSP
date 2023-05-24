@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using MusicProAPI.Modelos;
+using FakeBankApi_MSP.Modelos;
 
 namespace MusicProAPI.Controllers
 {

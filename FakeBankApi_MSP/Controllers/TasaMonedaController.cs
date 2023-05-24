@@ -1,12 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using MusicProAPI.Modelos;
 using MusicProAPI;
 using Newtonsoft.Json;
-using FolderERP.ANA.Model;
 using Microsoft.AspNetCore.DataProtection.KeyManagement;
 using System.Net.Http;
-using static FolderERP.ANA.Model.TasaMoneda;
 using System.Text.Json;
+using FakeBankApi_MSP.Modelos;
 
 namespace FakeBankApi_MSP.Controllers
 {
@@ -15,6 +13,7 @@ namespace FakeBankApi_MSP.Controllers
 	public class TasaMonedaController : Controller
 	{
 		GlobalMetods metods = new GlobalMetods();
+
 		ObtenerTazaMoneda tasa;
 		public string ApiKey = "f4b20e88262ba1da76d52a0c05475e26276151a5";
 
@@ -22,7 +21,9 @@ namespace FakeBankApi_MSP.Controllers
 		[Route("GetTasa")]
 		public async Task<IActionResult> GetTasa()
 		{
-			string url = "https://api.cmfchile.cl/api-sbifv3/recursos_api/dolar?apikey=" + ApiKey + "&formato=json";
+			//var val = await tasa.GetTasaDolar();
+
+            string url = "https://api.cmfchile.cl/api-sbifv3/recursos_api/dolar?apikey=" + ApiKey + "&formato=json";
 
 			var conection = new HttpClient();
 
@@ -35,9 +36,10 @@ namespace FakeBankApi_MSP.Controllers
 				content = await response.Content.ReadAsStringAsync();
 			}
 
-			var deserializedData = JsonConvert.DeserializeObject<ListDolar>(content);
+			var deserializedData = JsonConvert.DeserializeObject<TasaMoneda.ListDolar>(content);
 
-			return Content(content);
+
+            return Content(content);
 		}
 
 

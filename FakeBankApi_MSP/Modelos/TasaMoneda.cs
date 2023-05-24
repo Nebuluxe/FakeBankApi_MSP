@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace FolderERP.ANA.Model
+namespace FakeBankApi_MSP.Modelos
 {
     public class TasaMoneda
     {

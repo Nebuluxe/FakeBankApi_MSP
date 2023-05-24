@@ -1,5 +1,4 @@
 ﻿using FakeBankApi_MSP.Modelos;
-using MusicProAPI.Modelos;
 using System.IO;
 
 namespace MusicProAPI
