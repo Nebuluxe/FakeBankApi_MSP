@@ -43,7 +43,7 @@ namespace FakeBankApi_MSP
 
             string url = "https://api.cmfchile.cl/api-sbifv3/recursos_api/dolar?apikey=" + ApiKey + "&formato=json";
 
-            HttpResponseMessage response = await httpClient.GetAsync(url);
+            var response = await httpClient.GetAsync(url);
 
             string responseData = "";
 

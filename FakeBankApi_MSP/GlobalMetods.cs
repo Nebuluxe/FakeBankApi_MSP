@@ -232,32 +232,32 @@ namespace MusicProAPI
 
 		//====================== Conversion a pesos chienos ==========================
 
-		public async Task<int> ConvertionOfMoney(string Moneda, string Monto)
+		public async Task<decimal> ConvertionOfMoney(string Moneda, string Monto)
 		{
 			ObtenerTazaMoneda tasa = new ObtenerTazaMoneda();
 			
-			int MontoPeso = 0;
+			decimal MontoPeso = 0;
 
 			if (Moneda == "dolar")
 			{
 				var resultDolar = await tasa.GetTasaDolar();
 				var deserializeDolar = JsonConvert.DeserializeObject<TasaMoneda.ListDolar>(resultDolar);
 
-				MontoPeso = Convert.ToInt32(Monto) * Convert.ToInt32(deserializeDolar.Dolares.First().Valor);
+				MontoPeso = Math.Round(Convert.ToDecimal(Monto) * Convert.ToDecimal(deserializeDolar.Dolares.First().Valor), 0);
 			}
 			else if (Moneda == "euro")
 			{
 				var resultEuro = await tasa.GetTasaEuro();
 				var deserializeEuro = JsonConvert.DeserializeObject<TasaMoneda.ListEuro>(resultEuro);
 
-				MontoPeso = Convert.ToInt32(Monto) * Convert.ToInt32(deserializeEuro.Euros.First().Valor);
+				MontoPeso = Math.Round(Convert.ToDecimal(Monto) * Convert.ToDecimal(deserializeEuro.Euros.First().Valor), 0);
 			}
 			else if (Moneda == "uf")
 			{
 				var resultUf = await tasa.GetTasaUF();
 				var deserializeUf = JsonConvert.DeserializeObject<TasaMoneda.ListUf>(resultUf);
 
-				MontoPeso = Convert.ToInt32(Monto) * Convert.ToInt32(deserializeUf.UFs.First().Valor);
+				MontoPeso = Math.Round(Convert.ToDecimal(Monto) * Convert.ToDecimal(deserializeUf.UFs.First().Valor),0);
 			}
 
 			return MontoPeso;

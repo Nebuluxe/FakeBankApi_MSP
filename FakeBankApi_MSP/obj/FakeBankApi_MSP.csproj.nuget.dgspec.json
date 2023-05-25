@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\ASUS TUF F15\\Desktop\\Api Musi Pro( Integracion de plataformas)\\FakeBankApi_MSP\\FakeBankApi_MSP\\FakeBankApi_MSP.csproj": {}
+    "C:\\Users\\svega\\OneDrive\\Escritorio\\Proyectos Joaquin Diaz\\FakeBankApi_MSP\\FakeBankApi_MSP\\FakeBankApi_MSP.csproj": {}
   },
   "projects": {
-    "C:\\Users\\ASUS TUF F15\\Desktop\\Api Musi Pro( Integracion de plataformas)\\FakeBankApi_MSP\\FakeBankApi_MSP\\FakeBankApi_MSP.csproj": {
+    "C:\\Users\\svega\\OneDrive\\Escritorio\\Proyectos Joaquin Diaz\\FakeBankApi_MSP\\FakeBankApi_MSP\\FakeBankApi_MSP.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ASUS TUF F15\\Desktop\\Api Musi Pro( Integracion de plataformas)\\FakeBankApi_MSP\\FakeBankApi_MSP\\FakeBankApi_MSP.csproj",
+        "projectUniqueName": "C:\\Users\\svega\\OneDrive\\Escritorio\\Proyectos Joaquin Diaz\\FakeBankApi_MSP\\FakeBankApi_MSP\\FakeBankApi_MSP.csproj",
         "projectName": "FakeBankApi_MSP",
-        "projectPath": "C:\\Users\\ASUS TUF F15\\Desktop\\Api Musi Pro( Integracion de plataformas)\\FakeBankApi_MSP\\FakeBankApi_MSP\\FakeBankApi_MSP.csproj",
-        "packagesPath": "C:\\Users\\ASUS TUF F15\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ASUS TUF F15\\Desktop\\Api Musi Pro( Integracion de plataformas)\\FakeBankApi_MSP\\FakeBankApi_MSP\\obj\\",
+        "projectPath": "C:\\Users\\svega\\OneDrive\\Escritorio\\Proyectos Joaquin Diaz\\FakeBankApi_MSP\\FakeBankApi_MSP\\FakeBankApi_MSP.csproj",
+        "packagesPath": "C:\\Users\\svega\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\svega\\OneDrive\\Escritorio\\Proyectos Joaquin Diaz\\FakeBankApi_MSP\\FakeBankApi_MSP\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\ASUS TUF F15\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\svega\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -22,7 +22,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "https://api.nuget.org/v3/index.json": {}
+          "https://www.nuget.org/api/v2/": {}
         },
         "frameworks": {
           "net6.0": {
@@ -80,7 +80,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
         }
       }
     }

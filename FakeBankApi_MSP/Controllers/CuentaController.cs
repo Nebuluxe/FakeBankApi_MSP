@@ -1,6 +1,7 @@
 ﻿using FakeBankApi_MSP.Modelos;
 using Microsoft.AspNetCore.Mvc;
 using MusicProAPI;
+using System.Threading;
 
 namespace FakeBankApi_MSP.Controllers
 {
@@ -109,8 +110,8 @@ namespace FakeBankApi_MSP.Controllers
 		}
 
 		[HttpGet]
-		[Route("GetGetCuenta")]
-		public dynamic GetGetCuenta(string Rut_Persona, string NumeroCuenta)
+		[Route("GetCuenta")]
+		public dynamic GetCuenta(string Rut_Persona, string NumeroCuenta)
 		{
 			if (!metods.validarRut(Rut_Persona))
 			{
@@ -182,8 +183,107 @@ namespace FakeBankApi_MSP.Controllers
 
 			return cuenta;
 		}
+        [HttpGet]
+        [Route("GetSaldoCuenta")]
+        public dynamic GetSaldoCuenta(string Rut_Persona, string NumeroCuenta)
+        {
+            if (!metods.validarRut(Rut_Persona))
+            {
+                return new
+                {
+                    mesage = "El formato de rut es invalido, formato requerido: 99999999-9"
+                };
+            }
 
-		[HttpGet]
+            string[] listCuentas = metods.getContentFile("Cuentas");
+
+            if (listCuentas.Count() == 0)
+            {
+                return new
+                {
+                    mesage = "No hay cuentas registradas"
+                };
+            }
+
+            string[] listUsuarios = metods.getContentFile("Personas");
+
+            bool userEncontrada = false;
+
+            for (int i = 0; i < listUsuarios.Count(); i++)
+            {
+                string[] splitArr = listUsuarios[i].Split("||");
+
+                if (splitArr[0] == Rut_Persona)
+                {
+                    userEncontrada = true;
+                }
+            }
+
+            if (!userEncontrada)
+            {
+                return new
+                {
+                    message = "La persona con rut '" + Rut_Persona + "' no existe en los registros",
+                };
+            }
+
+            bool cuentaEncontrado = false;
+
+            for (int i = 0; i < listCuentas.Count(); i++)
+            {
+                string[] splitArr = listCuentas[i].Split("||");
+
+                if (splitArr[0] == Rut_Persona && splitArr[1] == NumeroCuenta)
+                {
+                    cuentaEncontrado = true;
+                    break;
+                }
+            }
+
+            if (!cuentaEncontrado)
+            {
+                return new
+                {
+                    mesage = "La cuenta '" + NumeroCuenta + "' no existe en los registros"
+                };
+            }
+
+            string[] list = metods.getContentFile("FondosCuentas");
+
+            List<string> content = new List<string>();
+
+			FondosCuenta fondos = new FondosCuenta();
+			fondos.NumeroCuenta = NumeroCuenta;
+
+            bool encontrado = false;
+
+            for (int i = 0; i < list.Count(); i++)
+            {
+                string[] splitArr = list[i].Split("||");
+
+                if (splitArr[0] == NumeroCuenta)
+                {
+                    fondos.FondosCuentaBancaria = splitArr[1];
+                    encontrado = true;
+
+                    break;
+                }
+
+                content.Add(list[i]);
+            }
+
+            if (!encontrado)
+            {
+                return new
+                {
+                    message = "No hay fondos en la cuenta"
+                };
+            }
+
+            return fondos;
+        }
+
+        [HttpGet]
 		[Route("GetHistorialTransaccionesCuenta")]
 		public dynamic GetHistorialTransaccionesCuenta(string Rut_Persona, string NumeroCuenta)
 		{
@@ -261,9 +361,10 @@ namespace FakeBankApi_MSP.Controllers
 
 					transaccion.Rut_Persona = splitArr[0];
 					transaccion.NumeroCuenta = splitArr[1];
-					transaccion.Monto = splitArr[2];
-					transaccion.TipoTransaccion = splitArr[3];
-					transaccion.FechaTransaccion = splitArr[4];
+					transaccion.NumeroTarjeta = splitArr[2];	
+					transaccion.Monto = splitArr[3];
+					transaccion.TipoTransaccion = splitArr[4];
+					transaccion.FechaTransaccion = splitArr[5];
 
 					transacciones.Add(transaccion);
 				}
@@ -417,16 +518,16 @@ namespace FakeBankApi_MSP.Controllers
 				fondos.FondosCuentaBancaria = Monto;
 				metods.saveLineFile("FondosCuentas", String.Format("{0}||{1}", fondos.NumeroCuenta, fondos.FondosCuentaBancaria));
 
-				metods.saveLineFile("Transacciones", String.Format("{0}||{1}||{2}||{3}||{4}", Rut_Persona, NumeroCuenta, Monto, "Abono", DateTime.Now.ToString("dd-MM-yyyy HH:mm:ss")));
-			}
-			else
+                metods.saveLineFile("Transacciones", String.Format("{0}||{1}||{2}||{3}||{4}||{5}", Rut_Persona, NumeroCuenta, "000000000", Monto, "Abono", DateTime.Now.ToString("dd-MM-yyyy HH:mm:ss")));
+            }
+            else
 			{
 				metods.updateLineFile("FondosCuentas", content);
 
-				metods.saveLineFile("Transacciones", String.Format("{0}||{1}||{2}||{3}||{4}", Rut_Persona, NumeroCuenta, Monto, "Abono", DateTime.Now.ToString("dd-MM-yyyy HH:mm:ss")));
-			}
+                metods.saveLineFile("Transacciones", String.Format("{0}||{1}||{2}||{3}||{4}||{5}", Rut_Persona, NumeroCuenta, "000000000", Monto, "Abono", DateTime.Now.ToString("dd-MM-yyyy HH:mm:ss")));
+            }
 
-			return new
+            return new
 			{
 				message = "Se han aumentado los fondos",
 				result = fondos
@@ -547,12 +648,12 @@ namespace FakeBankApi_MSP.Controllers
 			{
 				metods.updateLineFile("FondosCuentas", content);
 
-				metods.saveLineFile("Transacciones", String.Format("{0}||{1}||{2}||{3}||{4}", Rut_Persona, NumeroCuenta, Monto, "Abono", DateTime.Now.ToString("dd-MM-yyyy HH:mm:ss")));
-			}
+                metods.saveLineFile("Transacciones", String.Format("{0}||{1}||{2}||{3}||{4}||{5}", Rut_Persona, NumeroCuenta, "000000000", Monto, "Cargo", DateTime.Now.ToString("dd-MM-yyyy HH:mm:ss")));
+            }
 
-			return new
+            return new
 			{
-				message = "Se han aumentado los fondos",
+				message = "Se han disminuido los fondos",
 				result = fondos
 			};
 		}
