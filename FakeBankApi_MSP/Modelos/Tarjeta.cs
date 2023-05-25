@@ -2,8 +2,15 @@
 {
 	public class Tarjeta
 	{
-		public int Rut_Persona { get; set; }
-		public int NumeroTarjeta { get; set; }
-		public int NumeroCuenta { get; set; }
+		public string Rut_Persona { get; set; } = string.Empty;
+		public string NumeroTarjeta { get; set; } = string.Empty;
+		public int Cvv { get; set; }
+		public int ClaveTarjeta { get; set; }
+		public string NumeroCuenta { get; set; } = string.Empty;
+		public string TipoTarjeta { get; set; } = string.Empty;
+		public string FechaCreacion { get; set; } = string.Empty;
+		public string FechaExpiracion { get; set; } = string.Empty;
+		public bool Activa { get; set; }
+
 	}
 }

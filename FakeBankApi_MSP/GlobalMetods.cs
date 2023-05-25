@@ -1,4 +1,6 @@
-﻿using FakeBankApi_MSP.Modelos;
+﻿using FakeBankApi_MSP;
+using FakeBankApi_MSP.Modelos;
+using Newtonsoft.Json;
 using System.IO;
 
 namespace MusicProAPI
@@ -131,5 +133,134 @@ namespace MusicProAPI
 			}
 		}
 
+		//Generacion de numeros de trjeta y de cuentas bancarias 
+
+		//======================= Generador Nro Tarjeta ==============================
+		public string GenerateCreditCardNumber(string cardType)
+		{
+			string cardNumber = string.Empty;
+
+			switch (cardType)
+			{
+				case "visa":
+					cardNumber = GenerateVisaCardNumber();
+					break;
+				case "mastercard":
+					cardNumber = GenerateMastercardCardNumber();
+					break;
+				case "american_express":
+					cardNumber = GenerateAmericanExpressCardNumber();
+					break;
+				default:
+					// Generar un número de tarjeta genérico
+					cardNumber = GenerateGenericCardNumber();
+					break;
+			}
+
+			return cardNumber;
+		}
+
+		private string GenerateVisaCardNumber()
+		{
+			string prefix = "4";
+			string number = GenerateRandomNumber(13);
+			return prefix + number;
+		}
+
+		private string GenerateMastercardCardNumber()
+		{
+			string prefix = "5";
+			string number = GenerateRandomNumber(15);
+			return prefix + number;
+		}
+
+		private string GenerateAmericanExpressCardNumber()
+		{
+			string prefix = "3";
+			string number = GenerateRandomNumber(11);
+			return prefix + number;
+		}
+
+		private string GenerateGenericCardNumber()
+		{
+			string prefix = GenerateRandomNumber(1);
+			string number = GenerateRandomNumber(15);
+			return prefix + number;
+		}
+
+		private string GenerateRandomNumber(int length)
+		{
+			Random randomNumber = new Random();
+
+			string number = string.Empty;
+
+			for (int i = 0; i < length - 1; i++)
+			{
+				number += randomNumber.Next(0, 10);
+			}
+
+			return number;
+		}
+
+		//====================== Generador de numero de cuenta =======================
+		public string GenerateCreditAccountNumber()
+		{
+			Random randomNumber = new Random();
+
+			string number = string.Empty;
+
+			for (int i = 0; i < 12 ; i++)
+			{
+				number += randomNumber.Next(0, 10);
+			}
+
+			return number;
+		}
+		public int GenerateCreditAccountCvv()
+		{
+			Random randomNumber = new Random();
+
+			string number = string.Empty;
+
+			for (int i = 0; i < 3 ; i++)
+			{
+				number += randomNumber.Next(0, 10);
+			}
+
+			return Convert.ToInt32(number);
+		}
+
+		//====================== Conversion a pesos chienos ==========================
+
+		public async Task<int> ConvertionOfMoney(string Moneda, string Monto)
+		{
+			ObtenerTazaMoneda tasa = new ObtenerTazaMoneda();
+			
+			int MontoPeso = 0;
+
+			if (Moneda == "dolar")
+			{
+				var resultDolar = await tasa.GetTasaDolar();
+				var deserializeDolar = JsonConvert.DeserializeObject<TasaMoneda.ListDolar>(resultDolar);
+
+				MontoPeso = Convert.ToInt32(Monto) * Convert.ToInt32(deserializeDolar.Dolares.First().Valor);
+			}
+			else if (Moneda == "euro")
+			{
+				var resultEuro = await tasa.GetTasaEuro();
+				var deserializeEuro = JsonConvert.DeserializeObject<TasaMoneda.ListEuro>(resultEuro);
+
+				MontoPeso = Convert.ToInt32(Monto) * Convert.ToInt32(deserializeEuro.Euros.First().Valor);
+			}
+			else if (Moneda == "uf")
+			{
+				var resultUf = await tasa.GetTasaUF();
+				var deserializeUf = JsonConvert.DeserializeObject<TasaMoneda.ListUf>(resultUf);
+
+				MontoPeso = Convert.ToInt32(Monto) * Convert.ToInt32(deserializeUf.UFs.First().Valor);
+			}
+
+			return MontoPeso;
+		}
 	}
 }
