@@ -15,7 +15,6 @@ namespace FakeBankApi_MSP.Controllers
 		GlobalMetods metods = new GlobalMetods();
 
 		ObtenerTazaMoneda tasa = new ObtenerTazaMoneda();
-		public string ApiKey = "f4b20e88262ba1da76d52a0c05475e26276151a5";
 
 		[HttpGet]
 		[Route("GetTasaMonedas")]

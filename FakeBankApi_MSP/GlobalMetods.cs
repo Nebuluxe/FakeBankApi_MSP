@@ -243,21 +243,43 @@ namespace MusicProAPI
 				var resultDolar = await tasa.GetTasaDolar();
 				var deserializeDolar = JsonConvert.DeserializeObject<TasaMoneda.ListDolar>(resultDolar);
 
-				MontoPeso = Math.Round(Convert.ToDecimal(Monto) * Convert.ToDecimal(deserializeDolar.Dolares.First().Valor), 0);
+				if (deserializeDolar != null)
+				{
+					MontoPeso = Math.Round(Convert.ToDecimal(Monto) * Convert.ToDecimal(deserializeDolar.Dolares.First().Valor), 0);
+				}
+				else
+				{
+					MontoPeso = 0;
+				}
+
 			}
 			else if (Moneda == "euro")
 			{
 				var resultEuro = await tasa.GetTasaEuro();
 				var deserializeEuro = JsonConvert.DeserializeObject<TasaMoneda.ListEuro>(resultEuro);
 
-				MontoPeso = Math.Round(Convert.ToDecimal(Monto) * Convert.ToDecimal(deserializeEuro.Euros.First().Valor), 0);
+				if (deserializeEuro != null)
+				{
+					MontoPeso = Math.Round(Convert.ToDecimal(Monto) * Convert.ToDecimal(deserializeEuro.Euros.First().Valor), 0);
+				}
+				else
+				{
+					MontoPeso = 0;
+				}
 			}
 			else if (Moneda == "uf")
 			{
 				var resultUf = await tasa.GetTasaUF();
 				var deserializeUf = JsonConvert.DeserializeObject<TasaMoneda.ListUf>(resultUf);
 
-				MontoPeso = Math.Round(Convert.ToDecimal(Monto) * Convert.ToDecimal(deserializeUf.UFs.First().Valor), 0);
+				if (deserializeUf != null)
+				{
+					MontoPeso = Math.Round(Convert.ToDecimal(Monto) * Convert.ToDecimal(deserializeUf.UFs.First().Valor), 0);
+				}
+				else
+				{
+					MontoPeso = 0;
+				}
 			}
 
 			return MontoPeso;

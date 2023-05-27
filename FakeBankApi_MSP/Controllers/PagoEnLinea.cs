@@ -162,20 +162,29 @@ namespace FakeBankApi_MSP.Controllers
 						};
 					}
 
-					long MontoFinal = 0;
+					long MontoPeso = 0;
 
 					if (Moneda.ToLower() != "peso")
 					{
 						var MontoConvert = metods.ConvertionOfMoney(Moneda.ToLower(), Monto);
 
-						MontoFinal = Convert.ToInt32(MontoConvert);
+						MontoPeso = Convert.ToInt32(MontoConvert);
+
+						if (MontoPeso == 0)
+						{
+							return new
+							{
+								resultTransaccion = false,
+								message = "No se pueden efectuar trasacciones en moneda " + Moneda + " debido a que no se pudo conseguir el valor de la tasa"
+							};
+						}
 					}
 					else
 					{
-						MontoFinal = Convert.ToInt64(Monto);
+						MontoPeso = Convert.ToInt64(Monto);
 					}
 
-					fondos.FondosCuentaBancaria = (Convert.ToInt64(splitArr[1] == "" ? "0" : splitArr[1]) - Convert.ToInt64(MontoFinal)).ToString();
+					fondos.FondosCuentaBancaria = (Convert.ToInt64(splitArr[1] == "" ? "0" : splitArr[1]) - Convert.ToInt64(MontoPeso)).ToString();
 					content.Add(String.Format("{0}||{1}", fondos.NumeroCuenta, fondos.FondosCuentaBancaria));
 					encontrado = true;
 					break;
