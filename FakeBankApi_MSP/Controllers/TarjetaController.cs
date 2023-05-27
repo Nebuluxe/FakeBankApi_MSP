@@ -19,7 +19,8 @@ namespace MusicProAPI.Controllers
 			{
 				return new
 				{
-					mesage = "No hay tarjetas registradas"
+					resultTransaccion = false,
+					message = "No hay tarjetas registradas"
 				};
 			}
 
@@ -54,7 +55,8 @@ namespace MusicProAPI.Controllers
 			{
 				return new
 				{
-					mesage = "El formato de rut es invalido, formato requerido: 99999999-9"
+					resultTransaccion = false,
+					message = "El formato de rut es invalido, formato requerido: 99999999-9"
 				};
 			}
 
@@ -64,7 +66,8 @@ namespace MusicProAPI.Controllers
 			{
 				return new
 				{
-					mesage = "No hay tarjetas registradas"
+					resultTransaccion = false,
+					message = "No hay tarjetas registradas"
 				};
 			}
 
@@ -76,7 +79,7 @@ namespace MusicProAPI.Controllers
 			{
 				string[] splitArr = listUsuarios[i].Split("||");
 
-				if (splitArr[0]== Rut_Persona)
+				if (splitArr[0] == Rut_Persona)
 				{
 					personaEncontrada = true;
 				}
@@ -86,6 +89,7 @@ namespace MusicProAPI.Controllers
 			{
 				return new
 				{
+					resultTransaccion = false,
 					message = "La persona con rut '" + Rut_Persona + "' no existe en los registros",
 				};
 			}
@@ -96,7 +100,7 @@ namespace MusicProAPI.Controllers
 			{
 				string[] splitArr = list[i].Split("||");
 
-				if (splitArr[0]== Rut_Persona)
+				if (splitArr[0] == Rut_Persona)
 				{
 					Tarjeta tarjeta = new Tarjeta();
 
@@ -125,7 +129,8 @@ namespace MusicProAPI.Controllers
 			{
 				return new
 				{
-					mesage = "El formato de rut es invalido, formato requerido: 99999999-9"
+					resultTransaccion = false,
+					message = "El formato de rut es invalido, formato requerido: 99999999-9"
 				};
 			}
 
@@ -135,7 +140,8 @@ namespace MusicProAPI.Controllers
 			{
 				return new
 				{
-					mesage = "No hay tarjetas registradas"
+					resultTransaccion = false,
+					message = "No hay tarjetas registradas"
 				};
 			}
 
@@ -147,7 +153,7 @@ namespace MusicProAPI.Controllers
 			{
 				string[] splitArr = listUsuarios[i].Split("||");
 
-				if (splitArr[0]== Rut_Persona)
+				if (splitArr[0] == Rut_Persona)
 				{
 					personaEncontrada = true;
 				}
@@ -157,6 +163,7 @@ namespace MusicProAPI.Controllers
 			{
 				return new
 				{
+					resultTransaccion = false,
 					message = "La persona con rut '" + Rut_Persona + "' no existe en los registros",
 				};
 			}
@@ -169,7 +176,7 @@ namespace MusicProAPI.Controllers
 			{
 				string[] splitArr = list[i].Split("||");
 
-				if (splitArr[0]== Rut_Persona && splitArr[1] == NumeroTarjeta)
+				if (splitArr[0] == Rut_Persona && splitArr[1] == NumeroTarjeta)
 				{
 					tarjeta.Rut_Persona = splitArr[0];
 					tarjeta.NumeroTarjeta = splitArr[1];
@@ -190,7 +197,8 @@ namespace MusicProAPI.Controllers
 			{
 				return new
 				{
-					mesage = "La tarjeta '" + NumeroTarjeta + "' no existe en los registros"
+					resultTransaccion = false,
+					message = "La tarjeta '" + NumeroTarjeta + "' no existe en los registros"
 				};
 			}
 
@@ -205,7 +213,8 @@ namespace MusicProAPI.Controllers
 			{
 				return new
 				{
-					mesage = "El formato de rut es invalido, formato requerido: 99999999-9"
+					resultTransaccion = false,
+					message = "El formato de rut es invalido, formato requerido: 99999999-9"
 				};
 			}
 
@@ -217,7 +226,7 @@ namespace MusicProAPI.Controllers
 			{
 				string[] splitArr = listUsuarios[i].Split("||");
 
-				if (splitArr[0]== Rut_Persona)
+				if (splitArr[0] == Rut_Persona)
 				{
 					personaEncontrada = true;
 				}
@@ -227,6 +236,7 @@ namespace MusicProAPI.Controllers
 			{
 				return new
 				{
+					resultTransaccion = false,
 					message = "La persona con rut '" + Rut_Persona + "' no existe en los registros",
 				};
 			}
@@ -235,6 +245,7 @@ namespace MusicProAPI.Controllers
 			{
 				return new
 				{
+					resultTransaccion = false,
 					message = "Formato tipo cuenta incorrecto los tipo de tarjeta debe ser 'visa', 'mastercard' o 'american_express' ",
 				};
 			}
@@ -243,6 +254,7 @@ namespace MusicProAPI.Controllers
 			{
 				return new
 				{
+					resultTransaccion = false,
 					message = "La contraseña no puede tener mas de 4 digitos",
 				};
 			}
@@ -259,6 +271,7 @@ namespace MusicProAPI.Controllers
 					{
 						return new
 						{
+							resultTransaccion = false,
 							mesage = "La cuenta '" + NumeroCuenta + "' se encuentra inhabilitada"
 						};
 					}
@@ -272,7 +285,8 @@ namespace MusicProAPI.Controllers
 			{
 				return new
 				{
-					mesage = "La cuenta '" + NumeroCuenta + "' no existe en los registros"
+					resultTransaccion = false,
+					message = "La cuenta '" + NumeroCuenta + "' no existe en los registros"
 				};
 			}
 
@@ -291,8 +305,8 @@ namespace MusicProAPI.Controllers
 
 			return new
 			{
-				message = "Tarjeta registrada",
-				result = tarjeta
+				resultTransaccion = true,
+				message = "Tarjeta registrada, numero de cuenta: " + tarjeta.NumeroCuenta + ", numero tarjeta: " + tarjeta.NumeroTarjeta + ""
 			};
 		}
 
@@ -304,7 +318,8 @@ namespace MusicProAPI.Controllers
 			{
 				return new
 				{
-					mesage = "El formato de rut es invalido, formato requerido: 99999999-9"
+					resultTransaccion = false,
+					message = "El formato de rut es invalido, formato requerido: 99999999-9"
 				};
 			}
 
@@ -314,7 +329,8 @@ namespace MusicProAPI.Controllers
 			{
 				return new
 				{
-					mesage = "No hay categorias registradas"
+					resultTransaccion = false,
+					message = "No hay categorias registradas"
 				};
 			}
 
@@ -326,7 +342,7 @@ namespace MusicProAPI.Controllers
 			{
 				string[] splitArr = listPersonas[i].Split("||");
 
-				if (splitArr[0]== Rut_Persona)
+				if (splitArr[0] == Rut_Persona)
 				{
 					personaEncontrada = true;
 				}
@@ -336,6 +352,7 @@ namespace MusicProAPI.Controllers
 			{
 				return new
 				{
+					resultTransaccion = false,
 					message = "La persona con rut '" + Rut_Persona + "' no existe en los registros",
 				};
 			}
@@ -344,6 +361,7 @@ namespace MusicProAPI.Controllers
 			{
 				return new
 				{
+					resultTransaccion = false,
 					message = "La contraseña no puede tener mas de 4 digitos",
 				};
 			}
@@ -360,7 +378,8 @@ namespace MusicProAPI.Controllers
 					{
 						return new
 						{
-							mesage = "La cuenta '" + NumeroCuenta + "' se encuentra inhabilitada"
+							resultTransaccion = false,
+							message = "La cuenta '" + NumeroCuenta + "' se encuentra inhabilitada"
 						};
 					}
 
@@ -373,7 +392,8 @@ namespace MusicProAPI.Controllers
 			{
 				return new
 				{
-					mesage = "La cuenta '" + NumeroCuenta + "' no existe en los registros"
+					resultTransaccion = false,
+					message = "La cuenta '" + NumeroCuenta + "' no existe en los registros"
 				};
 			}
 
@@ -384,7 +404,7 @@ namespace MusicProAPI.Controllers
 			{
 				string[] splitArr = list[i].Split("||");
 
-				if (splitArr[0]== Rut_Persona)
+				if (splitArr[0] == Rut_Persona)
 				{
 
 					content.Add(String.Format("{0}||{1}||{2}||{3}||{4}||{5}||{6}||{7}||{8}", splitArr[0], splitArr[1], splitArr[2], ClaveNueva, splitArr[4], splitArr[5], splitArr[6], splitArr[7], splitArr[8]));
@@ -400,7 +420,8 @@ namespace MusicProAPI.Controllers
 			{
 				return new
 				{
-					mesage = "La tarjeta '" + NumeroTarjeta + "' no existe en los registros"
+					resultTransaccion = false,
+					message = "La tarjeta '" + NumeroTarjeta + "' no existe en los registros"
 				};
 			}
 
@@ -408,7 +429,8 @@ namespace MusicProAPI.Controllers
 
 			return new
 			{
-				mesage = "Se ha  cambiado la clave de la tarjeta '" + NumeroTarjeta + "'"
+				resultTransaccion = true,
+				message = "Se ha  cambiado la clave de la tarjeta '" + NumeroTarjeta + "'"
 			};
 		}
 
@@ -422,7 +444,8 @@ namespace MusicProAPI.Controllers
 			{
 				return new
 				{
-					mesage = "No hay categorias registrados"
+					resultTransaccion = false,
+					message = "No hay categorias registrados"
 				};
 			}
 
@@ -447,7 +470,8 @@ namespace MusicProAPI.Controllers
 			{
 				return new
 				{
-					mesage = "La tarjeta '" + NumeroTarjeta + "' no existe en los registros"
+					resultTransaccion = false,
+					message = "La tarjeta '" + NumeroTarjeta + "' no existe en los registros"
 				};
 			}
 
@@ -455,7 +479,8 @@ namespace MusicProAPI.Controllers
 
 			return new
 			{
-				mesage = "La tarjeta '" + NumeroTarjeta + "' fue eliminado exitosamente"
+				resultTransaccion = true,
+				message = "La tarjeta '" + NumeroTarjeta + "' fue eliminado exitosamente"
 			};
 		}
 

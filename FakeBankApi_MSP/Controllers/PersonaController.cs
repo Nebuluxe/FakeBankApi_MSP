@@ -21,7 +21,8 @@ namespace FakeBankApi_MSP.Controllers
 			{
 				return new
 				{
-					mesage = "No hay personas registradas"
+					resultTransaccion = false,
+					message = "No hay personas registradas"
 				};
 			}
 
@@ -55,7 +56,8 @@ namespace FakeBankApi_MSP.Controllers
 			{
 				return new
 				{
-					mesage = "No hay personas registrados"
+					resultTransaccion = false,
+					message = "No hay personas registrados"
 				};
 			}
 
@@ -63,7 +65,8 @@ namespace FakeBankApi_MSP.Controllers
 			{
 				return new
 				{
-					mesage = "El formato de rut es invalido, formato requerido: 99999999-9"
+					resultTransaccion = false,
+					message = "El formato de rut es invalido, formato requerido: 99999999-9"
 				};
 			}
 
@@ -92,7 +95,8 @@ namespace FakeBankApi_MSP.Controllers
 			{
 				return new
 				{
-					mesage = "La persona con rut '" + rut + "' no existe en los registros"
+					resultTransaccion = false,
+					message = "La persona con rut '" + rut + "' no existe en los registros"
 				};
 			}
 
@@ -107,6 +111,7 @@ namespace FakeBankApi_MSP.Controllers
 			{
 				return new
 				{
+					resultTransaccion = false,
 					message = "Faltan datos para almacenar la persona",
 				};
 			}
@@ -121,7 +126,8 @@ namespace FakeBankApi_MSP.Controllers
 				{
 					return new
 					{
-						mesage = "El RUT ingresado ya existe en los registros"
+						resultTransaccion = false,
+						message = "El RUT ingresado ya existe en los registros"
 					};
 				}
 			}
@@ -130,7 +136,8 @@ namespace FakeBankApi_MSP.Controllers
 			{
 				return new
 				{
-					mesage = "El formato de fecha es invalido, formato requerido: 01/01/1900"
+					resultTransaccion = false,
+					message = "El formato de fecha es invalido, formato requerido: 01/01/1900"
 				};
 			}
 
@@ -138,7 +145,8 @@ namespace FakeBankApi_MSP.Controllers
 			{
 				return new
 				{
-					mesage = "El formato de rut es invalido, formato requerido: 99999999-9"
+					resultTransaccion = false,
+					message = "El formato de rut es invalido, formato requerido: 99999999-9"
 				};
 			}
 
@@ -146,11 +154,11 @@ namespace FakeBankApi_MSP.Controllers
 
 			return new
 			{
-				message = "Usuario registrado",
-				result = GetPersona(persona.Rut)
+				resultTransaccion = true,
+				message = "La persona con rut " + persona.Rut + " ha sido registrada"
 			};
 		}
-	
+
 		[HttpPut]
 		[Route("ModificarPersona")]
 		public dynamic ModificarPersona(Persona persona)
@@ -161,7 +169,8 @@ namespace FakeBankApi_MSP.Controllers
 			{
 				return new
 				{
-					mesage = "No hay personas registradas"
+					resultTransaccion = false,
+					message = "No hay personas registradas"
 				};
 			}
 
@@ -182,7 +191,8 @@ namespace FakeBankApi_MSP.Controllers
 						{
 							return new
 							{
-								mesage = "El formato de fecha es invalido, formato requerido: 01/01/1900"
+								resultTransaccion = false,
+								message = "El formato de fecha es invalido, formato requerido: 01/01/1900"
 							};
 						}
 					}
@@ -199,7 +209,8 @@ namespace FakeBankApi_MSP.Controllers
 			{
 				return new
 				{
-					mesage = "La persona con rut '" + persona.Rut + "' no existe en los registros"
+					resultTransaccion = false,
+					message = "La persona con rut '" + persona.Rut + "' no existe en los registros"
 				};
 			}
 
@@ -207,8 +218,8 @@ namespace FakeBankApi_MSP.Controllers
 
 			return new
 			{
-				mesage = "Persona modificada",
-				result = GetPersona(persona.Rut)
+				resultTransaccion = true,
+				message = "Se han modificado los datos de la persona con rut " + persona.Rut
 			};
 		}
 
@@ -222,7 +233,8 @@ namespace FakeBankApi_MSP.Controllers
 			{
 				return new
 				{
-					mesage = "No hay personas registrados"
+					resultTransaccion = false,
+					message = "No hay personas registrados"
 				};
 			}
 
@@ -230,7 +242,8 @@ namespace FakeBankApi_MSP.Controllers
 			{
 				return new
 				{
-					mesage = "El formato de rut es invalido, formato requerido: 99999999-9"
+					resultTransaccion = false,
+					message = "El formato de rut es invalido, formato requerido: 99999999-9"
 				};
 			}
 
@@ -255,7 +268,8 @@ namespace FakeBankApi_MSP.Controllers
 			{
 				return new
 				{
-					mesage = "La persona con rut '" + rut + "' no existe en los registros"
+					resultTransaccion = false,
+					message = "La persona con rut '" + rut + "' no existe en los registros"
 				};
 			}
 
@@ -263,7 +277,8 @@ namespace FakeBankApi_MSP.Controllers
 
 			return new
 			{
-				mesage = "La persona con rut '" + rut + "' fue eliminada exitosamente"
+				resultTransaccion = true,
+				message = "La persona con rut '" + rut + "' fue eliminada exitosamente"
 			};
 		}
 	}

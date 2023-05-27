@@ -5,8 +5,6 @@ using Microsoft.AspNetCore.DataProtection.KeyManagement;
 using System.Net.Http;
 using System.Text.Json;
 using FakeBankApi_MSP.Modelos;
-using Microsoft.OpenApi.Any;
-using static FakeBankApi_MSP.Modelos.TasaMoneda;
 
 namespace FakeBankApi_MSP.Controllers
 {
@@ -20,26 +18,25 @@ namespace FakeBankApi_MSP.Controllers
 		public string ApiKey = "f4b20e88262ba1da76d52a0c05475e26276151a5";
 
 		[HttpGet]
-		[Route("GetTasa")]
-		public async Task<dynamic> GetTasa()
+		[Route("GetTasaMonedas")]
+		public async Task<dynamic> GetTasaMonedas()
 		{
 			var resultDolar = await tasa.GetTasaDolar();
-            var resultEuro = await tasa.GetTasaEuro();
-            var resultUf = await tasa.GetTasaUF();
+			var resultEuro = await tasa.GetTasaEuro();
+			var resultUf = await tasa.GetTasaUF();
 
-            var deserializeDolar = JsonConvert.DeserializeObject<TasaMoneda.ListDolar>(resultDolar);
-            var deserializeEuro = JsonConvert.DeserializeObject<TasaMoneda.ListEuro>(resultEuro);
-            var deserializeUf = JsonConvert.DeserializeObject<TasaMoneda.ListUf>(resultUf);
+			var deserializeDolar = JsonConvert.DeserializeObject<TasaMoneda.ListDolar>(resultDolar);
+			var deserializeEuro = JsonConvert.DeserializeObject<TasaMoneda.ListEuro>(resultEuro);
+			var deserializeUf = JsonConvert.DeserializeObject<TasaMoneda.ListUf>(resultUf);
 
-            return new
-            {
-                message = "Valores dfe moneda",
+			return new
+			{
 				ResultsDolar = deserializeDolar,
 				ResultEuro = deserializeEuro,
 				resultUf = deserializeUf
-            };
-        }
+			};
+		}
 	}
 
-	
+
 }

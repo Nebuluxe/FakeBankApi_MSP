@@ -120,7 +120,7 @@ namespace MusicProAPI
 
 		public bool ValidarFormatoFecha(string fecha)
 		{
-			string formato = "dd/MM/yyyy"; 
+			string formato = "dd/MM/yyyy";
 			DateTime fechaValidada;
 
 			if (DateTime.TryParseExact(fecha, formato, null, System.Globalization.DateTimeStyles.None, out fechaValidada))
@@ -209,7 +209,7 @@ namespace MusicProAPI
 
 			string number = string.Empty;
 
-			for (int i = 0; i < 12 ; i++)
+			for (int i = 0; i < 12; i++)
 			{
 				number += randomNumber.Next(0, 10);
 			}
@@ -222,7 +222,7 @@ namespace MusicProAPI
 
 			string number = string.Empty;
 
-			for (int i = 0; i < 3 ; i++)
+			for (int i = 0; i < 3; i++)
 			{
 				number += randomNumber.Next(0, 10);
 			}
@@ -235,7 +235,7 @@ namespace MusicProAPI
 		public async Task<decimal> ConvertionOfMoney(string Moneda, string Monto)
 		{
 			ObtenerTazaMoneda tasa = new ObtenerTazaMoneda();
-			
+
 			decimal MontoPeso = 0;
 
 			if (Moneda == "dolar")
@@ -257,7 +257,7 @@ namespace MusicProAPI
 				var resultUf = await tasa.GetTasaUF();
 				var deserializeUf = JsonConvert.DeserializeObject<TasaMoneda.ListUf>(resultUf);
 
-				MontoPeso = Math.Round(Convert.ToDecimal(Monto) * Convert.ToDecimal(deserializeUf.UFs.First().Valor),0);
+				MontoPeso = Math.Round(Convert.ToDecimal(Monto) * Convert.ToDecimal(deserializeUf.UFs.First().Valor), 0);
 			}
 
 			return MontoPeso;
